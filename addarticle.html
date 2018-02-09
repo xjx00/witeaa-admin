@@ -57,11 +57,9 @@
 
         });
     });
-    var ghstr = getCookie("gh");
-    var gh = JSON.parse(ghstr);
- //    var gh = new GitHub({
-	// 	token:token
-	// });
+    var tkstr = getCookie("tkstr");
+    var tk = JSON.parse(tkstr);
+    var gh = new GitHub(tk);
 	var repo = gh.getRepo("witeaa", "blog");
 	// var repo2 = gh.getRepo("xjx00", "blog");
 

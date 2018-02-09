@@ -59,8 +59,7 @@
                var me = gh.getUser();
                me.getProfile(function(error, result, request){
                if(error == null){
-                var ghstr = JSON.stringify(gh);
-                setCookie("gh",ghstr,3);
+                setCookie("tkstr",tkstr,3);
                 setCookie("user",result.login,3);
                 window.location.href = "index.html";
                }else{

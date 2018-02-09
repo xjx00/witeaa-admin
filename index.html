@@ -18,7 +18,8 @@
   <body>
   	<script type="text/javascript">
 	    var gh = getCookie("gh");
-	    user = getCookie("user");
+	    var user = getCookie("user");
+	    document.getElementById('user').innerHTML=user;
   		if(gh == null || user = null || gh = "" || user = ""){
   			alert("请先登录！");
   			window.location.href = "login.html";
