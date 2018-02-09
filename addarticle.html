@@ -1,0 +1,86 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+	<meta name="renderer" content="webkit|ie-comp|ie-stand">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta http-equiv="Cache-Control" content="no-siteapp" />
+	<link rel="stylesheet" href="https://xjx00.github.io/editor.md/css/editormd.min.css" />
+	<script src="https://xjx00.github.io/editor.md/examples/js/jquery.min.js"></script>
+    <script src="https://xjx00.github.io/editor.md/editormd.min.js"></script>
+    <script src="https://unpkg.com/github-api/dist/GitHub.bundle.min.js"></script>
+    <script src="common/layui/lay/modules/layer.js"></script>
+    <title>添加文章</title>
+ </head>
+  
+  <body>
+	<div id="editormd">
+    <textarea style="display:none;">
+    	+++
+    	author = "请修改作者"
+    	title = "请修改标题"
+    	date = "2018-01-16T2:11:24+08:00"
+    	share = false
+    	draft = false
+    	+++
+    	## 请注意关键字空格
+        ### Hello Editor.md !</textarea>
+    <script type="text/javascript">
+    $(function() {
+        editor = editormd("editormd", {
+        	width   : "100%",
+            height  : 640,
+            path : "https://xjx00.github.io/editor.md/lib/",
+            toolbarIcons : function() {
+            	return ["undo", "redo", "|", 
+            "bold", "del", "italic", "quote", "ucwords", "uppercase", "lowercase", "|", 
+            "h1", "h2", "h3", "h4", "h5", "h6", "|", 
+            "list-ul", "list-ol", "hr", "|",
+            "link", "reference-link", "image", "code", "preformatted-text", "code-block", "table", "datetime", "emoji", "html-entities", "pagebreak", "|",
+            "goto-line", "watch", "preview", "fullscreen", "clear", "search", "|",
+            "help", "info","upload"]
+            },
+            toolbarIconTexts : {
+            upload : "上传",  // 如果没有图标，则可以这样直接插入内容，可以是字符串或HTML标签
+            },
+            toolbarHandlers : {
+            	upload : function(cm, icon, cursor, selection) {
+                var name = prompt("请输入文件名",);
+                if (name != null && name != "") {
+                	upload(name);
+                } else {
+                	alert("文件名不能为空！");
+                }
+            }
+            }
+
+        });
+    });
+    var token = getCookie("token");
+    var gh = new GitHub({
+		token:token
+	});
+	var repo = gh.getRepo("witeaa", "blog");
+	// var repo2 = gh.getRepo("xjx00", "blog");
+
+    function upload(name) {
+    	// layer.load(0, {shade: false});
+    	var file = editor.getMarkdown();
+    	repo.writeFile("source","content/post/"+name+".md",file,"upload"+name,function(error, result, request){
+    		if(error == null){
+    			alert("成功添加文章，等待审核");
+    		}else{
+    			alert("添加失败"+error);
+    		}
+
+    	});
+    	// repo2.createPullRequest('{"title": "upload new article1","head": "witeaa:source","base": "source"}',function(error, result, request){
+    	// 	console.log(error);
+    	// });
+    }
+</script>
+</div>
+
+  </body>
+</html>
