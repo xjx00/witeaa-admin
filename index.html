@@ -19,8 +19,7 @@
   	<script type="text/javascript">
 	    var gh = getCookie("gh");
 	    var user = getCookie("user");
-	    document.getElementById('user').innerHTML=user;
-  		if(gh == null || user = null || gh = "" || user = ""){
+  		if(gh == null || user == null || gh == "" || user == ""){
   			alert("请先登录！");
   			window.location.href = "login.html";
   		}
@@ -79,7 +78,8 @@
 	<script src="common/layui/lay/modules/layer.js"></script>
 	<script type="text/javascript">
 		function loader(){
-			alert(user);
+			var user = getCookie("user");
+			//alert(user);
 			document.getElementById('user').innerHTML=user;
 		}
 		function logout(){
