@@ -53,12 +53,12 @@
         function login() {
             var token = document.getElementById('password').value;
             if(token != ""){
-               var gh = new GitHub({
-                   token:token
-                 });
+                var tkstr = '{"token":"'+token+'"}'
+                var tk = JSON.parse(tkstr);
+               var gh = new GitHub(tk);
                var me = gh.getUser();
                me.getProfile(function(error, result, request){
-               if(error != null){
+               if(error == null){
                 setCookie("gh",gh,3);
                 setCookie("user",result.login,3);
                 window.location.href = "index.html";
