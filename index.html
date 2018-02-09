@@ -17,9 +17,9 @@
   
   <body>
   	<script type="text/javascript">
-	    var gh = getCookie("gh");
+	    var tkstr = getCookie("tkstr");
 	    var user = getCookie("user");
-  		if(gh == null || user == null || gh == "" || user == ""){
+  		if(tkstr == null || user == null || tkstr == "" || user == ""){
   			alert("请先登录！");
   			window.location.href = "login.html";
   		}
