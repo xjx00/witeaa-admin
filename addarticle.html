@@ -57,7 +57,8 @@
 
         });
     });
-    var gh = getCookie("gh");
+    var ghstr = getCookie("gh");
+    var gh = JSON.parse(ghstr);
  //    var gh = new GitHub({
 	// 	token:token
 	// });
