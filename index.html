@@ -17,8 +17,9 @@
   
   <body>
   	<script type="text/javascript">
-	    var token = getCookie("token");
-  		if(token == null){
+	    var gh = getCookie("gh");
+	    user = getCookie("user");
+  		if(gh == null || user = null || gh = "" || user = ""){
   			alert("请先登录！");
   			window.location.href = "login.html";
   		}
@@ -30,11 +31,11 @@
 			<ul class="header-bar">
 				<li class="header-bar-role"><a href="javascript:;">超级管理员</a></li>
 				<li class="header-bar-nav">
-					<a href="javascript:;">admin<i class="icon-font" style="margin-left:5px;">&#xe60c;</i></a>
+					<a href="javascript:;" id="user">admin<i class="icon-font" style="margin-left:5px;">&#xe60c;</i></a>
 					<ul class="header-dropdown-menu">
 <!-- 						<li><a href="javascript:;">个人信息</a></li>
 						<li><a href="javascript:;">切换账户</a></li> -->
-						<li><a href="javascript:;">退出</a></li>
+						<li><a href="logout();">退出</a></li>
 					</ul>
 				</li>
 				<li class="header-bar-nav"> 
@@ -74,9 +75,19 @@
 	</div>
 	<script type="text/javascript" src="common/lib/jquery-1.9.0.min.js"></script>
 	<script type="text/javascript" src="common/js/sccl.js"></script>
+	<script src="common/layui/lay/modules/layer.js"></script>
 	<script type="text/javascript">
+		function loader(){
+			document.getElementById('user').innerHTML=user;
+		}
 		function logout(){
-			setCookie(token, "", -1);
+			setCookie("gh", "", -1);
+			setCookie("user", "", -1);
+			layer.alert('退出成功', {
+                    icon: 1
+                });
+			window.location.href = "login.html";
+
 		}
 	</script>
   </body>

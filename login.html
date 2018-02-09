@@ -52,14 +52,30 @@
         function login() {
             var token = document.getElementById('password').value;
             if(token != ""){
-                setCookie("token",token,3);
-                window.location.href = "admin.html";
+               var gh = new GitHub({
+                   token:token
+                 });
+               var me = gh.getUser();
+               me.getProfile(function(error, result, request){
+               if(error != null){
+                setCookie("gh",gh,3);
+                setCookie("user",result.login,3);
+                window.location.href = "index.html";
+               }else{
+                  layui.use('layer', function(){
+                  var layer = layui.layer;
+                   layer.alert('Token不正确', {
+                      icon: 2
+                    });
+                });                 
+               }
+            });
             }else{
             layui.use('layer', function(){
                var layer = layui.layer;
                layer.alert('请输入GITHUB Token!', {
                     icon: 2
-                })
+                });
             }); 
         }
         }

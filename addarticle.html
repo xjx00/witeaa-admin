@@ -10,7 +10,6 @@
 	<script src="https://xjx00.github.io/editor.md/examples/js/jquery.min.js"></script>
     <script src="https://xjx00.github.io/editor.md/editormd.min.js"></script>
     <script src="https://unpkg.com/github-api/dist/GitHub.bundle.min.js"></script>
-    <script src="common/layui/lay/modules/layer.js"></script>
     <script type="text/javascript" src="common/js/sccl-util.js"></script>
     <title>添加文章</title>
  </head>
@@ -58,10 +57,10 @@
 
         });
     });
-    var token = getCookie("token");
-    var gh = new GitHub({
-		token:token
-	});
+    var gh = getCookie("gh");
+ //    var gh = new GitHub({
+	// 	token:token
+	// });
 	var repo = gh.getRepo("witeaa", "blog");
 	// var repo2 = gh.getRepo("xjx00", "blog");
 
