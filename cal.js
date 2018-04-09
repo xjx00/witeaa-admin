@@ -54,14 +54,14 @@ function div(a, b) {
 }
 
 function slp(x){
-    var v = new Array(2);
+    var v,w;
     var a,b;
-    v[0] = 0.0;
-    v[0] = v[1];
+    v = 0.0;
+    v = w;
     a = mul(0.2452372752527856026,x);
-    b = mul(0.50952544949442879485,v[0]);
-    v[1] = add(a,b);
-    return add(v[0],v[1]);
+    b = mul(0.50952544949442879485,v);
+    w = add(a,b);
+    return add(v,w);
 }
 
 function dcr(x){
